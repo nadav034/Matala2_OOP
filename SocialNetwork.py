@@ -23,7 +23,7 @@ class SocialNetwork(metaclass=SocialNetworkMeta):
         resault_str =(f"{self.name} social network:\n")
         for user in self.user_list:
             resault_str += user.__str__()+ "\n"
-        return resault_str
+        return resault_str.removesuffix("\n")
 
 
     def sign_up(self, username: str, password: str):
