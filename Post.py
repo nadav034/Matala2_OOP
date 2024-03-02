@@ -1,6 +1,7 @@
 from __future__ import annotations
-from PIL import Image
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt, image as mpimg
+
+import User
 
 
 class Post:
@@ -31,18 +32,22 @@ class Post:
 
     def like(self, user):
         """  Allow a user to like the post. """
-        if user.name not in self.likes:
-            self.likes_counter += 1
-            self.likes.append(user)
-            str = "like"
-            self.notify(str, user, self.type, self.body)
+        if user.log is True:
+            if user.name not in self.likes:
+                self.likes_counter += 1
+                self.likes.append(user)
+                str = "like"
+                if self.owner.name != user.name:
+                    self.notify(str, user, self.type, self.body)
 
     def comment(self, user, str):
         """ Allow a user to comment on the post. """
-        self.comments_counter += 1
-        self.comments.append(str)
-        str1 = "comment"
-        self.notify(str1, user, self.type, str)
+        if user.log is True:
+            self.comments_counter += 1
+            self.comments.append(str)
+            str1 = "comment"
+            if self.owner.name != user.name:
+                self.notify(str1, user, self.type, str)
 
     def notify(self, action, user, type: str, body=None):
         """Notify the post owner and followers about actions (like, comment, post) -using the observer design pattern"""
@@ -80,23 +85,26 @@ class Post:
 
     def sold(self, password):
         """Mark the Sale type post as sold."""
-        if password == self.owner.password:
-            if self.type == "Sale":
-                self.available = "Sold! "
-                print(f"{self.owner.name}'s product is sold")
-                self.available = "Sold!"
+        if self.owner.log is True:
+            if password == self.owner.password:
+                if self.type == "Sale":
+                    self.available = "Sold! "
+                    print(f"{self.owner.name}'s product is sold")
+                    self.available = "Sold!"
 
     def discount(self, discount: float, password):
         """Apply a discount to the post's price."""
-        if self.owner.password == password:
-            self.price = self.price - (self.price * discount / 100)
-            print(f"Discount on {self.owner.name} product! the new price is: {self.price}")
+        if self.owner.log is True:
+            if self.owner.password == password:
+                self.price = self.price - (self.price * discount / 100)
+                print(f"Discount on {self.owner.name} product! the new price is: {self.price}")
 
     def display(self):
         """ Display the image for Image type post."""
         if self.type == "Image":
-            img = Image.open(self.body)
+            img = mpimg.imread(self.body)
             plt.imshow(img)
+            plt.title(self.body)
             plt.axis('off')
             plt.show()
             print("Shows picture")
