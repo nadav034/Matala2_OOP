@@ -34,7 +34,7 @@ The project utilizes several design patterns:
 To run the simulation of the social network:
 ```bash
 python py.main
-
+ ```
 
 #Code structure
 
