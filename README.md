@@ -36,8 +36,8 @@ To run the simulation of the social network:
 python py.main
  ```
 
-#Code structure
-
+###Code structure
+```bash
 .
 ├── src
 │   ├── network.py           # Contains the Network class
@@ -51,3 +51,5 @@ python py.main
 ├── py.main                  # Entry point of the simulation
 ├── txt.output               # Expected output for verification
 └── README.md                # This file
+
+ ```
