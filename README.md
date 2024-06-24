@@ -36,7 +36,7 @@ To run the simulation of the social network:
 python py.main
  ```
 
-###Code structure
+### Code structure
 ```bash
 .
 ├── src
