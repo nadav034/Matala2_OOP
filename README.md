@@ -30,8 +30,24 @@ The project utilizes several design patterns:
     ```bash
     pip install -r requirements.txt
     ```
-
 ### Running the Project
 To run the simulation of the social network:
 ```bash
 python py.main
+
+
+#Code structure
+
+.
+├── src
+│   ├── network.py           # Contains the Network class
+│   ├── user.py              # Contains the User class
+│   ├── post.py              # Contains the Post base class and subclasses
+│   └── ...
+├── tests
+│   └── test_script.py       # Self-testing script
+├── docs
+│   └── design_patterns.md   # Documentation on design patterns used
+├── py.main                  # Entry point of the simulation
+├── txt.output               # Expected output for verification
+└── README.md                # This file
