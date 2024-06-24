@@ -46,8 +46,7 @@ python py.main
 │   └── ...
 ├── tests
 │   └── test_script.py       # Self-testing script
-├── docs
-│   └── design_patterns.md   # Documentation on design patterns used
+│   
 ├── py.main                  # Entry point of the simulation
 ├── txt.output               # Expected output for verification
 └── README.md                # This file
